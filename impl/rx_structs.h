@@ -22,11 +22,20 @@ struct rx_app_impl {
 };
 RX_STATIC_ASSERT(sizeof(struct rx_app_impl) == sizeof(struct rx_app), "È·±£ÄÚ²¿ÊµÏÖºÍ½Ó¿ÚÒ»ÖÂ");
 
+//  Elem
+struct rx_elem_impl {
+    struct list_head        nibrs;
+    struct rx_elem_impl*    parent;
+    struct list_head        childs;
+    int                     childscount;
+    struct rx_rect          rect;
+    struct rx_ctrl_impl*    ctrl;
+};
+RX_STATIC_ASSERT(sizeof(struct rx_elem_impl) == sizeof(struct rx_elem), "È·±£ÄÚ²¿ÊµÏÖºÍ½Ó¿ÚÒ»ÖÂ");
+
 //  Ctrl
 struct rx_ctrl_impl {
-    struct list_head nibrs;
-    struct rx_ctrl_impl* parent;
-    struct rx_rect rect;
+    struct rx_elem_impl* elem;
     RX_PAINT paint;
 };
 RX_STATIC_ASSERT(sizeof(struct rx_ctrl_impl) == sizeof(struct rx_ctrl), "È·±£ÄÚ²¿ÊµÏÖºÍ½Ó¿ÚÒ»ÖÂ");
@@ -40,8 +49,6 @@ RX_STATIC_ASSERT(sizeof(struct rx_layout_impl) == sizeof(struct rx_layout), "È·±
 //  Cntr
 struct rx_cntr_impl {
     struct rx_ctrl_impl super;
-    struct list_head childs;
-    int childscount;
     struct rx_layout* layout;
 };
 RX_STATIC_ASSERT(sizeof(struct rx_cntr_impl) == sizeof(struct rx_cntr), "È·±£ÄÚ²¿ÊµÏÖºÍ½Ó¿ÚÒ»ÖÂ");
