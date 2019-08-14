@@ -37,6 +37,7 @@ RX_API(int,             rx_app_run(struct rx_app* app));
 RX_DEFINE(struct rx_elem, 44);
 RX_API(int,             rx_elem_init(struct rx_elem* elem, struct rx_ctrl* ctrl));
 RX_API(struct rx_ctrl*, rx_elem_ctrl(struct rx_elem* elem));
+RX_API(struct rx_ctrl*, rx_elem_ctrl_set(struct rx_elem* elem, struct rx_ctrl* ctrl));
 RX_API(struct rx_elem*, rx_elem_nextnibr(struct rx_elem* elem));
 RX_API(struct rx_elem*, rx_elem_prevnibr(struct rx_elem* elem));
 RX_API(struct rx_elem*, rx_elem_parent(struct rx_elem* elem));
@@ -45,25 +46,25 @@ RX_API(int,             rx_elem_childscount(struct rx_elem* elem));
 RX_API(struct rx_elem*, rx_elem_lastchild(struct rx_elem* elem));
 RX_API(struct rx_elem*, rx_elem_root(struct rx_elem* elem));
 //
-RX_API(void,            rx_elem_nibr_addbreore(struct rx_elem* elem, struct rx_elem* newitem));
+RX_API(void,            rx_elem_nibr_addbefore(struct rx_elem* elem, struct rx_elem* newitem));
 RX_API(void,            rx_elem_nibr_addbehind(struct rx_elem* elem, struct rx_elem* newitem));
 RX_API(void,            rx_elem_child_addtail(struct rx_elem* elem, struct rx_elem* newitem));
 RX_API(void,            rx_elem_child_addhead(struct rx_elem* elem, struct rx_elem* newitem));
 RX_API(struct rx_elem*, rx_elem_split(struct rx_elem* elem));
 
-RX_DEFINE(struct rx_ctrl, 8);
+RX_DEFINE(struct rx_ctrl, 12);
 typedef uintptr_t(RX_CALL* RX_PAINT)(struct rx_ctrl* ctrl, uintptr_t canvas, uintptr_t context);
 typedef int(RX_CALL* RX_NOTIFY)(struct rx_ctrl* ctrl, struct rx_notify* notify);
 RX_API(int,             rx_ctrl_init(struct rx_ctrl* ctrl, RX_PAINT paint, RX_NOTIFY notify));
 RX_API(struct rx_ctrl*, rx_ctrl_nextnibr(struct rx_ctrl* ctrl));
 RX_API(struct rx_ctrl*, rx_ctrl_prevnibr(struct rx_ctrl* ctrl));
 RX_API(struct rx_ctrl*, rx_ctrl_parent(struct rx_ctrl* ctrl));
-RX_API(void,            rx_ctrl_nibr_addbreore(struct rx_ctrl* ctrl, struct rx_ctrl* newitem));
+RX_API(void,            rx_ctrl_nibr_addbefore(struct rx_ctrl* ctrl, struct rx_ctrl* newitem));
 RX_API(void,            rx_ctrl_nibr_addbehind(struct rx_ctrl* ctrl, struct rx_ctrl* newitem));
 RX_API(struct rx_elem*, rx_ctrl_elem(struct rx_ctrl* ctrl));
 RX_API(int,             rx_ctrl_pos(struct rx_ctrl* ctrl, struct rx_rect* rect));
 
-RX_DEFINE(struct rx_cntr, 12);
+RX_DEFINE(struct rx_cntr, 16);
 RX_API(int,                 rx_cntr_init(struct rx_cntr* cntr, struct rx_panel* panel));
 RX_API(struct rx_ctrl*,     rx_cntr_firstchild(struct rx_cntr* cntr));
 RX_API(int,                 rx_cntr_childscount(struct rx_cntr* cntr));
@@ -83,16 +84,16 @@ RX_API(int,             rx_panel_init(struct rx_panel* p, uintptr_t inst, RX_EVE
 RX_API(uintptr_t,       rx_panel_fd(struct rx_panel* p));
 RX_API(struct rx_cntr*, rx_panel_cntr(struct rx_panel* p));
 
-RX_DEFINE(struct rx_list, 20);
+RX_DEFINE(struct rx_list, 24);
 RX_API(struct rx_list*, rx_list_init());
 
-RX_DEFINE(struct rx_tree, 12);
+RX_DEFINE(struct rx_tree, 16);
 RX_API(int, rx_tree_init(struct rx_tree* tree, struct rx_panel* panel));
 
 RX_DEFINE(struct rx_accel, 12);
 RX_API(int, rx_accel_init(struct rx_accel* accel, uintptr_t inst, int id));
 
-RX_DEFINE(struct rx_menu, 12);
+RX_DEFINE(struct rx_menu, 16);
 RX_API(int, rx_menu_init(struct rx_menu* menu, uintptr_t inst, int id));
 
 #endif //__rx_H_

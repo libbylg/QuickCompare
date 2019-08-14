@@ -78,4 +78,9 @@ static inline struct list_head* list_replace(struct list_head* entry, struct lis
 #define list_for_each_safe(pos, n, head) \
     for (pos = (head)->next, n = pos->next; pos != (head); pos = n, n = pos->next)
 
+
+#define list_entry(ptr, type, member)       container_of(ptr, type, member)
+
+#define container_of(ptr, type, member)     ((type*)((char*)(ptr)-offsetof(type, member)))
+
 #endif //_rx_list_H_
