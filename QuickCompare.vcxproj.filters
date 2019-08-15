@@ -74,6 +74,15 @@
     <ClCompile Include="impl\rx_ctrl.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="impl\rx_elem.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="impl\rx_gridlayout.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="impl\rx_object.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="QuickCompare.rc">

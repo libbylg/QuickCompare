@@ -4,8 +4,19 @@
 #include "rx/rx.h"
 #include "utils/list.h"
 
+//  Object
+struct rx_object_impl {
+    uint32_t _type;
+    uint16_t _size;
+    uint16_t _noused1;
+    void* _class;
+    uint8_t _noused2[4];
+};
+RX_STATIC_ASSERT(sizeof(struct rx_object_impl) == sizeof(struct rx_object), "È·±£ÄÚ²¿ÊµÏÖºÍ½Ó¿ÚÒ»ÖÂ");
+
 //  Accel
 struct rx_accel_impl {
+    struct rx_object super;
     struct list_head nibrs;
     uintptr_t accel;
 };
@@ -13,6 +24,7 @@ RX_STATIC_ASSERT(sizeof(struct rx_accel_impl) == sizeof(struct rx_accel), "È·±£Ä
 
 //  App
 struct rx_app_impl {
+    struct rx_object super;
     uint16_t size;
     uint16_t mode;
     uint32_t noused;
@@ -24,6 +36,7 @@ RX_STATIC_ASSERT(sizeof(struct rx_app_impl) == sizeof(struct rx_app), "È·±£ÄÚ²¿Ê
 
 //  Elem
 struct rx_elem_impl {
+    struct rx_object super;
     struct rx_elem_impl* parent;
     struct list_head nibrs;
     struct list_head childs;
@@ -35,6 +48,7 @@ RX_STATIC_ASSERT(sizeof(struct rx_elem_impl) == sizeof(struct rx_elem), "È·±£ÄÚ²
 
 //  Ctrl
 struct rx_ctrl_impl {
+    struct rx_object super;
     struct rx_elem_impl* elem;
     RX_PAINT paint;
     RX_NOTIFY notify;
@@ -43,6 +57,7 @@ RX_STATIC_ASSERT(sizeof(struct rx_ctrl_impl) == sizeof(struct rx_ctrl), "È·±£ÄÚ²
 
 //  Layout
 struct rx_layout_impl {
+    struct rx_object super;
     RX_RELAYOUT relayout;
 };
 RX_STATIC_ASSERT(sizeof(struct rx_layout_impl) == sizeof(struct rx_layout), "È·±£ÄÚ²¿ÊµÏÖºÍ½Ó¿ÚÒ»ÖÂ");
@@ -57,6 +72,7 @@ RX_STATIC_ASSERT(sizeof(struct rx_cntr_impl) == sizeof(struct rx_cntr), "È·±£ÄÚ²
 //  Panel
 #define RX_PANEL_CLASS_NAME (_T("rx.panel"))
 struct rx_panel_impl {
+    struct rx_object super;
     uintptr_t fd;
     RX_EVENT event;
     struct rx_cntr_impl* cntr;
@@ -65,9 +81,15 @@ RX_STATIC_ASSERT(sizeof(struct rx_panel_impl) == sizeof(struct rx_panel), "È·±£Ä
 
 //  Tree
 struct rx_tree_impl {
-    struct rx_ctrl_impl ctrl;
+    struct rx_ctrl_impl super;
     uintptr_t fd;
 };
 RX_STATIC_ASSERT(sizeof(struct rx_tree_impl) == sizeof(struct rx_tree), "È·±£ÄÚ²¿ÊµÏÖºÍ½Ó¿ÚÒ»ÖÂ");
+
+//  Gridlayout
+struct rx_gridlayout_impl {
+    struct rx_layout_impl super;
+};
+RX_STATIC_ASSERT(sizeof(struct rx_gridlayout_impl) == sizeof(struct rx_gridlayout), "È·±£ÄÚ²¿ÊµÏÖºÍ½Ó¿ÚÒ»ÖÂ");
 
 #endif //_rx_structs_H_

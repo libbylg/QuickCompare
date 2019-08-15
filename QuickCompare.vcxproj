@@ -168,6 +168,9 @@
     <ClCompile Include="impl\rx_accel.c" />
     <ClCompile Include="impl\rx_app.c" />
     <ClCompile Include="impl\rx_ctrl.c" />
+    <ClCompile Include="impl\rx_elem.c" />
+    <ClCompile Include="impl\rx_gridlayout.c" />
+    <ClCompile Include="impl\rx_object.c" />
     <ClCompile Include="impl\rx_tree.c" />
     <ClCompile Include="QuickCompare.c" />
     <ClCompile Include="impl\rx.c" />
