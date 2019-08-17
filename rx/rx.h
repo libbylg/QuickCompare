@@ -24,6 +24,19 @@ struct rx_notify {
     uintptr_t result;
 };
 
+#define RX_UNIT_AUTO    (0x00010000)    //  自动，无类型
+#define RX_UNIT_PX      (0x00020001)    //  px，整数
+#define RX_UNIT_FR      (0x00030001)    //  fr，整数
+#define RX_UNIT_PERCENT (0x00040002)    //  百分比，浮点数
+struct rx_metric {
+    uint32_t unit;
+    union {
+        float f;
+        int i;
+    };    
+};
+
+
 struct rx_app;
 struct rx_elem;
 
@@ -103,6 +116,8 @@ RX_API(int, rx_menu_init(struct rx_menu* menu, uintptr_t inst, int id));
 
 RX_DEFINE(struct rx_gridlayout, struct rx_layout, 0);
 RX_API(int, rx_gridlayout_init(struct rx_gridlayout* layout));
+RX_API(int, rx_gridlayout_columns_set(struct rx_gridlayout* layout, struct rx_metric* m, int count));
+RX_API(int, rx_gridlayout_rows_set(struct rx_gridlayout* layout, struct rx_metric* m, int count));
 
 //RX_DEFINE()
 

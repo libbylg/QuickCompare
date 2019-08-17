@@ -51,6 +51,12 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="impl\utils\map.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\utils\array.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="impl\rx.c">
