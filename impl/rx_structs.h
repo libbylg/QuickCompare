@@ -2,7 +2,9 @@
 #define _rx_structs_H_
 
 #include "rx/rx.h"
+#include "utils/array.h"
 #include "utils/list.h"
+#include "utils/map.h"
 
 //  Object
 struct rx_object_impl {
@@ -86,9 +88,56 @@ struct rx_tree_impl {
 };
 RX_STATIC_ASSERT(sizeof(struct rx_tree_impl) == sizeof(struct rx_tree), "确保内部实现和接口一致");
 
+struct rx_str {
+    uint32_t hash;
+    uint32_t size;
+    wchar_t* name;
+};
+
+struct rx_value_impl {
+    uintptr_t type;
+    union {
+        int64_t vint64;
+        uint64_t vuint64;
+        int32_t vint32;
+        uint32_t vuint32;
+        int16_t vint16;
+        uint16_t vuint16;
+        int8_t vint8;
+        uint8_t vuint8;
+        boot_t vbool;
+        uintptr_t vany;
+        rx_metric vmetric;
+        struct array* varray;
+        struct map* vmap;
+        struct rx_value* ref;
+    };
+};
+RX_STATIC_ASSERT(sizeof(struct rx_value_impl) == sizeof(struct rx_value), "确保内部实现和接口一致");
+
+struct rx_attr {
+    uint8_t unknown[36];
+};
+
+struct rx_attr_impl {
+    struct list_head head;
+    struct rx_str name;
+    struct rx_value value;
+};
+RX_STATIC_ASSERT(sizeof(struct rx_attr_impl) == sizeof(struct rx_attr), "确保内部实现和接口一致");
+
 //  Gridlayout
 struct rx_gridlayout_impl {
     struct rx_layout_impl super;
+    struct array grid_template_columns;
+    struct array grid_template_rows;
+    rx_metric grid_column_gap;
+    rx_metric grid_row_gap;
+    int grid_auto_flow;
+    int justify_items;
+    int align_items;
+    int justify_content;
+    int align_content;
 };
 RX_STATIC_ASSERT(sizeof(struct rx_gridlayout_impl) == sizeof(struct rx_gridlayout), "确保内部实现和接口一致");
 

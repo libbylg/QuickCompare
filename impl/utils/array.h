@@ -64,6 +64,9 @@ static inline int array_init(struct array* array, int init_cap, struct array_tra
     return 0;
 }
 
+//static inline int array_count(struct array* array);
+#define array_count(array) ((int)((array)->count))
+
 static inline void array_exit(struct array* array)
 {
     free(array->data);

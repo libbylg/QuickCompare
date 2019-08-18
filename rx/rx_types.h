@@ -89,7 +89,7 @@ typedef    uint32_t         uintptr_t;
 #endif
 
 
-typedef     int32_t         rx_bool;
+typedef     int32_t         boot_t;
 #define     rx_true         (!(0))
 #define     rx_false        (0)
 

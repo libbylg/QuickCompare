@@ -28,14 +28,11 @@ struct rx_notify {
 #define RX_UNIT_PX      (0x00020001)    //  px，整数
 #define RX_UNIT_FR      (0x00030001)    //  fr，整数
 #define RX_UNIT_PERCENT (0x00040002)    //  百分比，浮点数
-struct rx_metric {
-    uint32_t unit;
-    union {
-        float f;
-        int i;
-    };    
-};
+typedef uint64_t rx_metric;
 
+struct rx_value {
+    uint8_t unknown[16];
+};
 
 struct rx_app;
 struct rx_elem;
