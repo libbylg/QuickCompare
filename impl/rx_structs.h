@@ -36,6 +36,7 @@ struct rx_app_impl {
 };
 RX_STATIC_ASSERT(sizeof(struct rx_app_impl) == sizeof(struct rx_app), "È·±£ÄÚ²¿ÊµÏÖºÍ½Ó¿ÚÒ»ÖÂ");
 
+
 //  Elem
 struct rx_elem_impl {
     struct rx_object super;
@@ -129,16 +130,10 @@ RX_STATIC_ASSERT(sizeof(struct rx_attr_impl) == sizeof(struct rx_attr), "È·±£ÄÚ²
 //  Gridlayout
 struct rx_gridlayout_impl {
     struct rx_layout_impl super;
-    struct array grid_template_columns;
-    struct array grid_template_rows;
-    rx_metric grid_column_gap;
-    rx_metric grid_row_gap;
-    int grid_auto_flow;
-    int justify_items;
-    int align_items;
-    int justify_content;
-    int align_content;
 };
 RX_STATIC_ASSERT(sizeof(struct rx_gridlayout_impl) == sizeof(struct rx_gridlayout), "È·±£ÄÚ²¿ÊµÏÖºÍ½Ó¿ÚÒ»ÖÂ");
 
+
+//  Ë½ÓĞ>»ùÓÚid>»ùÓÚclass>½ÚµãÀàĞÍ>¼Ì³ĞµÄÊôĞÔ>È«¾ÖÈ±Ê¡
+//  Ë½ÓĞÀ´Ô´>±¾Ò³ÃæÀ´Ô´>ÒıÈëÎÄ¼şÀ´Ô´
 #endif //_rx_structs_H_

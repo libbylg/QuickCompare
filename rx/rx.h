@@ -24,11 +24,17 @@ struct rx_notify {
     uintptr_t result;
 };
 
-#define RX_UNIT_AUTO    (0x00010000)    //  自动，无类型
-#define RX_UNIT_PX      (0x00020001)    //  px，整数
-#define RX_UNIT_FR      (0x00030001)    //  fr，整数
-#define RX_UNIT_PERCENT (0x00040002)    //  百分比，浮点数
+#define RX_UNIT_AUTO    (0x00010000)     //  自动，无类型
+#define RX_UNIT_PX      (0x00020001)     //  px，整数
+#define RX_UNIT_FR      (0x00030001)     //  fr，整数
+#define RX_UNIT_PERCENT (0x00040002)     //  百分比，浮点数
 typedef uint64_t rx_metric;
+#define rx_metric_of(t, v)  ((((uint64_t)(t)) << 32) | ((uint32_t)(v)))
+#define rx_metric_type(m)   ((uint32_t)((((uint64_t)(m)) >> 32) & 0x00000000FFFFFFFFULL))
+#define rx_metric_int32(m)  ((int32_t)(((uint64_t)(m)) & 0x00000000FFFFFFFFULL))
+#define rx_metric_uint32(m) ((uint32_t)(((uint64_t)(m)) & 0x00000000FFFFFFFFULL))
+#define rx_metric_float(m)  ((float)(((uint64_t)(m)) & 0x00000000FFFFFFFFULL))
+
 
 struct rx_value {
     uint8_t unknown[16];
